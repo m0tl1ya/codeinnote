@@ -60,7 +60,6 @@ themes.forEach((theme) => {
 })
 
 
-
 const defaultValue =
 `function onLoad(editor) {
   console.log(\"i\'ve loaded\");
@@ -69,23 +68,15 @@ const defaultValue =
 const styles = theme => ({
   root: theme.mixins.gutters({
     margin: '2em',
-    padding: '2em',
+    width: 'auto',
+    // padding: '2em',
+    // width: '80em',
     // marginTop: theme.spacing.unit,
     // width: 600,
     // marginLeft: '1em',
     // display: 'flex',
-    // flexWrap: 'wrap',
-  }),
-  textField: {
-    display: 'flex',
     flexWrap: 'wrap',
-    width: '35em',
-    margin: '1em',
-    // marginLeft: '0.2em',
-    // // marginLeft: '2em',
-    // marginBottom: '0.9em',
-    // marginRight: theme.spacing.unit,
-  },
+  }),
 });
 
 
@@ -161,6 +152,7 @@ class CodeEditor extends Component {
     const { classes } = this.props;
     return (
       <AceEditor
+            className={classes.root}
             mode={this.state.mode}
             theme={this.state.theme}
             name="blah2"

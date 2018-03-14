@@ -18,17 +18,25 @@ const styles = theme => ({
     paddingBottom: 2,
     marginTop: theme.spacing.unit,
     width: '90%',
-    marginLeft: '1em',
-    display: 'flex',
-    flexWrap: 'wrap',
-  }),
-  textField: {
-    width: '20em',
-    marginLeft: '0.2em',
     // marginLeft: '2em',
-    marginBottom: '0.9em',
-    marginRight: theme.spacing.unit,
-  },
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'flex',
+    justifyContent: 'space-around',
+    possition: 'absolute',
+    // flexWrap: 'wrap',
+  }),
+  // contents: {
+  //   width: '90%',
+  // },
+  // editor: {
+  //   // width: '20em',
+  //   padding: '1em',
+  //   marginLeft: '0.2em',
+  //   // marginLeft: '2em',
+  //   marginBottom: '0.9em',
+  //   marginRight: theme.spacing.unit,
+  // },
 });
 
 
@@ -119,8 +127,8 @@ class CodeNote extends Component {
     const { classes, counter, actions, mode } = this.props;
     return (
       <Paper className={classes.root} elevation={4}>
-        <div>
-          <CodeEditor/>
+        <div className={classes.contents} >
+          <CodeEditor />
         </div>
       </Paper>
     );
