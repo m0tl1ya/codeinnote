@@ -11,6 +11,8 @@ import Paper from 'material-ui/Paper';
 // import TextInput from './TextInput';
 
 import CodeEditor from './CodeEditor';
+import TitleInput from './TitleInput';
+
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -128,6 +130,7 @@ class CodeNote extends Component {
     return (
       <Paper className={classes.root} elevation={4}>
         <div className={classes.contents} >
+          <TitleInput />
           <CodeEditor />
         </div>
       </Paper>
