@@ -12,6 +12,7 @@ import Paper from 'material-ui/Paper';
 
 import CodeEditor from './CodeEditor';
 import TitleInput from './TitleInput';
+import ToolBar from './ToolBar';
 
 
 const styles = theme => ({
@@ -131,6 +132,7 @@ class CodeNote extends Component {
       <Paper className={classes.root} elevation={4}>
         <div className={classes.contents} >
           <TitleInput />
+          <ToolBar />
           <CodeEditor />
         </div>
       </Paper>
