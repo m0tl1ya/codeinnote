@@ -12,7 +12,7 @@ import Paper from 'material-ui/Paper';
 
 import CodeEditor from './CodeEditor';
 import TitleInput from './TitleInput';
-import ToolBar from './ToolBar';
+import SettingBar from './SettingBar';
 
 
 const styles = theme => ({
@@ -47,22 +47,22 @@ class CodeNote extends Component {
   constructor(props) {
     super(props);
     // this.state = {
-    //   text: this.props.counter.text,
-    //   words: this.props.counter.words,
-    //   characters: this.props.counter.characters,
-    //   allCharacters: this.props.counter.characters,
-    //   isCounted: this.props.counter.isCounted,
+    //   text: this.props.note.text,
+    //   words: this.props.note.words,
+    //   characters: this.props.note.characters,
+    //   allCharacters: this.props.note.characters,
+    //   isCounted: this.props.note.isCounted,
     // };
     // this.handleText = this.handleText.bind(this);
     // this.handleState = this.handleState.bind(this);
   }
 
   // componentWillReceiveProps(nextProps) {
-  //   // this.setState({ text: nextProps.counter.text });
-  //   this.setState({ words: nextProps.counter.words });
-  //   this.setState({ characters: nextProps.counter.characters });
-  //   this.setState({ allCharacters: nextProps.counter.allCharacters });
-  //   this.setState({ isCounted: nextProps.counter.isCounted });
+  //   // this.setState({ text: nextProps.note.text });
+  //   this.setState({ words: nextProps.note.words });
+  //   this.setState({ characters: nextProps.note.characters });
+  //   this.setState({ allCharacters: nextProps.note.allCharacters });
+  //   this.setState({ isCounted: nextProps.note.isCounted });
   // }
   //
   // handleText(text) {
@@ -83,7 +83,7 @@ class CodeNote extends Component {
   //       characterOfText = 0;
   //     }
   //     this.props.actions.editCounter(
-  //       this.props.counter.id,
+  //       this.props.note.id,
   //       text,
   //       wordsOfText,
   //       characterOfText,
@@ -96,15 +96,15 @@ class CodeNote extends Component {
   // handleState() {
   //   if (this.state.isCounted) {
   //     // this.setState({ isCounted: false });
-  //     this.props.actions.editCounter(this.props.counter.id, this.props.counter.text, 0, 0, false);
+  //     this.props.actions.editCounter(this.props.note.id, this.props.note.text, 0, 0, false);
   //   } else {
   //     // this.setState({ isCounted: true });
-  //     const arrayOfWords = this.props.counter.text.match(/\S+/g);
-  //     const arrayOfCharacterss = this.props.counter.text.match(/\S/g);
+  //     const arrayOfWords = this.props.note.text.match(/\S+/g);
+  //     const arrayOfCharacterss = this.props.note.text.match(/\S/g);
   //
   //     let wordsOfText;
   //     let characterOfText;
-  //     const allCharactersOfText = this.props.counter.text.length;
+  //     const allCharactersOfText = this.props.note.text.length;
   //     if (arrayOfWords != null) {
   //       wordsOfText = arrayOfWords.length;
   //     } else {
@@ -116,8 +116,8 @@ class CodeNote extends Component {
   //       characterOfText = 0;
   //     }
   //     this.props.actions.editCounter(
-  //       this.props.counter.id,
-  //       this.props.counter.text,
+  //       this.props.note.id,
+  //       this.props.note.text,
   //       wordsOfText,
   //       characterOfText,
   //       allCharactersOfText,
@@ -127,13 +127,23 @@ class CodeNote extends Component {
   // }
 
   render() {
-    const { classes, counter, actions, mode } = this.props;
+    const { classes, note, actions } = this.props;
     return (
       <Paper className={classes.root} elevation={4}>
         <div className={classes.contents} >
-          <TitleInput />
-          <ToolBar />
-          <CodeEditor />
+          <TitleInput
+            id={note.id}
+            title={note.title}
+          />
+          <SettingBar
+            language={note.language}
+            actions={actions}
+          />
+          <CodeEditor
+            mode={note.language}
+            code={note.code}
+            actions={actions}
+          />
         </div>
       </Paper>
     );
@@ -142,7 +152,7 @@ class CodeNote extends Component {
 
 CodeNote.propTypes = {
   classes: PropTypes.objectOf.isRequired,
-  counter: PropTypes.objectOf.isRequired,
+  note: PropTypes.objectOf.isRequired,
   actions: PropTypes.objectOf.isRequired,
   mode: PropTypes.objectOf.isRequired,
 };

@@ -161,7 +161,7 @@ class CodeEditor extends Component {
             onSelectionChange={this.onSelectionChange}
             onCursorChange={this.onCursorChange}
             onValidate={this.onValidate}
-            value={this.state.value}
+            value={this.props.code}
             fontSize={this.state.fontSize}
             showPrintMargin={this.state.showPrintMargin}
             showGutter={this.state.showGutter}
@@ -180,8 +180,9 @@ class CodeEditor extends Component {
 
 CodeEditor.propTypes = {
   classes: PropTypes.objectOf.isRequired,
-  edit: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
+  // edit: PropTypes.func.isRequired,
+  // mode: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(CodeEditor);

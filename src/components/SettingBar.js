@@ -79,7 +79,7 @@ const typeOfParameters = [
   'css'
 ];
 
-class ToolBar extends Component {
+class SettingBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -158,11 +158,11 @@ class ToolBar extends Component {
 
 
 
-ToolBar.propTypes = {
+SettingBar.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   parameter: PropTypes.objectOf.isRequired,
   editParameter: PropTypes.func.isRequired,
   deleteParameter: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(ToolBar);
+export default withStyles(styles)(SettingBar);
