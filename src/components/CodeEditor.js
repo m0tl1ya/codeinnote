@@ -34,8 +34,8 @@ const languages = [
   'csharp',
   'elixir',
   'typescript',
-  'css'
-]
+  'css',
+];
 
 const themes = [
   'monokai',
@@ -48,16 +48,16 @@ const themes = [
   'solarized_dark',
   'solarized_light',
   'terminal',
-]
+];
 
 languages.forEach((lang) => {
   require(`brace/mode/${lang}`)
   require(`brace/snippets/${lang}`)
-})
+});
 
 themes.forEach((theme) => {
   require(`brace/theme/${theme}`)
-})
+});
 
 
 const defaultValue =
@@ -84,9 +84,9 @@ class CodeEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: defaultValue,
+      value: this.props.code || '',
       theme: 'monokai',
-      mode: 'javascript',
+      mode: this.props.mode,
       enableBasicAutocompletion: false,
       enableLiveAutocompletion: false,
       fontSize: 14,
@@ -153,7 +153,7 @@ class CodeEditor extends Component {
     return (
       <AceEditor
             className={classes.root}
-            mode={this.state.mode}
+            mode={this.props.mode}
             theme={this.state.theme}
             name="blah2"
             onLoad={this.onLoad}
@@ -181,7 +181,7 @@ class CodeEditor extends Component {
 CodeEditor.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   // edit: PropTypes.func.isRequired,
-  // mode: PropTypes.string.isRequired,
+  mode: PropTypes.string.isRequired,
   code: PropTypes.string.isRequired,
 };
 

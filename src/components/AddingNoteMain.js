@@ -33,7 +33,7 @@ class AddingNoteMain extends Component {
   }
 
   render() {
-    const { classes, notes, actions } = this.props;
+    const { classes, notes, actions, refresh, addNote } = this.props;
     // console.log(filteredParameters);
     return (
       <div className={classes.container}>
@@ -46,7 +46,7 @@ class AddingNoteMain extends Component {
           variant="fab"
           color="primary"
           className={classes.refreshButton}
-          onClick={actions.refresh}
+          onClick={refresh}
         >
           <Refresh />
         </Button>
@@ -54,7 +54,7 @@ class AddingNoteMain extends Component {
           variant="fab"
           color="secondary"
           className={classes.addButton}
-          onClick={actions.addNote}
+          onClick={addNote}
         >
           <AddIcon />
         </Button>
@@ -67,6 +67,8 @@ AddingNoteMain.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   notes: PropTypes.arrayOf.isRequired,
   actions: PropTypes.objectOf.isRequired,
+  addNote: PropTypes.func.isRequired,
+  refresh: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AddingNoteMain);

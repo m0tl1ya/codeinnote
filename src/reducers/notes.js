@@ -2,6 +2,10 @@ import {
   ADD_NOTE,
   DELETE_NOTE,
   REFRESH,
+  EDIT_CODE,
+  EDIT_TITLE,
+  EDIT_DESCRIPTION,
+  SET_LANGUAGE,
 } from '../actions/noteActions';
 
 const initialState = [
@@ -34,6 +38,9 @@ function notes(state = initialState, action) {
     case REFRESH:
       return state.filter(note =>
         note.id === -1);
+
+    // case EDIT_CODE:
+
 
     default:
       return state;

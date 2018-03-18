@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ButtonBar from '../components/ButtonBar';
-import CodeNote from '../components/CodeNote';
+// import CodeNote from '../components/CodeNote';
 import AddingNoteMain from '../components/AddingNoteMain';
 import * as NoteActions from '../actions/noteActions';
-// import * as ModeActions from '../actions/modeActions';
+import * as EditorActions from '../actions/editorActions';
 
 const AddingNoteList = ({ notes, actions }) => (
   <div>
@@ -16,8 +16,9 @@ const AddingNoteList = ({ notes, actions }) => (
       refresh={actions.noteActions.refresh}
     />
     <AddingNoteMain
-      notes={notes}
-      actions={actions.noteActions}
+      actions={actions.editorActions}
+      addNote={actions.noteActions.addNote}
+      refresh={actions.noteActions.refresh}
     />
   </div>
 );
@@ -36,6 +37,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: {
     noteActions: bindActionCreators(NoteActions, dispatch),
+    editorActions: bindActionCreators(EditorActions, dispatch),
   },
 });
 
