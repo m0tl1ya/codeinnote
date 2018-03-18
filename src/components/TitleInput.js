@@ -63,10 +63,10 @@ class TitleInput extends Component {
   handleBlur = name => event => {
     // this.setState({ [name]: event.target.value });
     if (name == 'name') {
-      this.props.editTitle(event.target.value);
+      this.props.editTitle(this.props.id, event.target.value);
     }
     if (name == 'description') {
-      this.props.editDescription(event.target.value);
+      this.props.editDescription(this.props.id, event.target.value);
     }
 
   }
@@ -135,7 +135,7 @@ class TitleInput extends Component {
 
 TitleInput.propTypes = {
   classes: PropTypes.objectOf.isRequired,
-  parameters: PropTypes.objectOf.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.objectOf.isRequired,
   description: PropTypes.objectOf.isRequired,
   discardParameters: PropTypes.func.isRequired,

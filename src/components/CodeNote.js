@@ -55,76 +55,9 @@ class CodeNote extends Component {
     // };
     // this.handleText = this.handleText.bind(this);
     // this.handleState = this.handleState.bind(this);
+    // this.handleTitleText = this.handleTitleText.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   // this.setState({ text: nextProps.note.text });
-  //   this.setState({ words: nextProps.note.words });
-  //   this.setState({ characters: nextProps.note.characters });
-  //   this.setState({ allCharacters: nextProps.note.allCharacters });
-  //   this.setState({ isCounted: nextProps.note.isCounted });
-  // }
-  //
-  // handleText(text) {
-  //   if (this.state.isCounted) {
-  //     const arrayOfWords = text.match(/\S+/g);
-  //     const arrayOfCharacterss = text.match(/\S/g);
-  //
-  //     let wordsOfText;
-  //     let characterOfText;
-  //     if (arrayOfWords != null) {
-  //       wordsOfText = arrayOfWords.length;
-  //     } else {
-  //       wordsOfText = 0;
-  //     }
-  //     if (arrayOfCharacterss != null) {
-  //       characterOfText = arrayOfCharacterss.length;
-  //     } else {
-  //       characterOfText = 0;
-  //     }
-  //     this.props.actions.editCounter(
-  //       this.props.note.id,
-  //       text,
-  //       wordsOfText,
-  //       characterOfText,
-  //       text.length,
-  //       true
-  //     );
-  //   }
-  // }
-  //
-  // handleState() {
-  //   if (this.state.isCounted) {
-  //     // this.setState({ isCounted: false });
-  //     this.props.actions.editCounter(this.props.note.id, this.props.note.text, 0, 0, false);
-  //   } else {
-  //     // this.setState({ isCounted: true });
-  //     const arrayOfWords = this.props.note.text.match(/\S+/g);
-  //     const arrayOfCharacterss = this.props.note.text.match(/\S/g);
-  //
-  //     let wordsOfText;
-  //     let characterOfText;
-  //     const allCharactersOfText = this.props.note.text.length;
-  //     if (arrayOfWords != null) {
-  //       wordsOfText = arrayOfWords.length;
-  //     } else {
-  //       wordsOfText = 0;
-  //     }
-  //     if (arrayOfCharacterss != null) {
-  //       characterOfText = arrayOfCharacterss.length;
-  //     } else {
-  //       characterOfText = 0;
-  //     }
-  //     this.props.actions.editCounter(
-  //       this.props.note.id,
-  //       this.props.note.text,
-  //       wordsOfText,
-  //       characterOfText,
-  //       allCharactersOfText,
-  //       true
-  //     );
-  //   }
-  // }
 
   render() {
     const { classes, note, actions } = this.props;
@@ -134,15 +67,18 @@ class CodeNote extends Component {
           <TitleInput
             id={note.id}
             title={note.title}
+            editTitle={actions.editTitle}
           />
           <SettingBar
+            id={note.id}
             language={note.language}
-            actions={actions}
+            setLanguage={actions.setLanguage}
           />
           <CodeEditor
+            id={note.id}
             mode={note.language}
             code={note.code}
-            actions={actions}
+            edit={actions.editCode}
           />
         </div>
       </Paper>

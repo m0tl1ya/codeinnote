@@ -11,8 +11,8 @@ import {
 const initialState = [
   {
     id: 0,
-    description: '',
-    code: 'aa',
+    title: '',
+    code: '',
     language: 'javascript',
     isCounted: true,
   },
@@ -25,7 +25,7 @@ function notes(state = initialState, action) {
         ...state,
         {
           id: state.reduce((maxId, note) => Math.max(note.id, maxId), -1) + 1,
-          description: '',
+          title: '',
           code: '',
           language: 'javascript',
           isCounted: true,
@@ -39,8 +39,32 @@ function notes(state = initialState, action) {
       return state.filter(note =>
         note.id === -1);
 
-    // case EDIT_CODE:
+    case EDIT_CODE:
+      return state.map(note =>
+          note.id === action.id ?
+          {
+            ...note,
+            code: action.text,
+          } :
+          note);
 
+    case EDIT_TITLE:
+      return state.map(note =>
+          note.id === action.id ?
+          {
+            ...note,
+            title: action.text,
+          } :
+          note);
+
+    case SET_LANGUAGE:
+      return state.map(note =>
+          note.id === action.id ?
+          {
+            ...note,
+            language: action.text,
+          } :
+          note);
 
     default:
       return state;

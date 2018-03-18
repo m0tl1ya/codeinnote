@@ -7,7 +7,7 @@ import ButtonBar from '../components/ButtonBar';
 // import CodeNote from '../components/CodeNote';
 import AddingNoteMain from '../components/AddingNoteMain';
 import * as NoteActions from '../actions/noteActions';
-import * as EditorActions from '../actions/editorActions';
+// import * as EditorActions from '../actions/editorActions';
 
 const AddingNoteList = ({ notes, actions }) => (
   <div>
@@ -16,9 +16,8 @@ const AddingNoteList = ({ notes, actions }) => (
       refresh={actions.noteActions.refresh}
     />
     <AddingNoteMain
-      actions={actions.editorActions}
-      addNote={actions.noteActions.addNote}
-      refresh={actions.noteActions.refresh}
+      notes={notes}
+      actions={actions.noteActions}
     />
   </div>
 );
@@ -37,7 +36,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: {
     noteActions: bindActionCreators(NoteActions, dispatch),
-    editorActions: bindActionCreators(EditorActions, dispatch),
+    // editorActions: bindActionCreators(EditorActions, dispatch),
   },
 });
 

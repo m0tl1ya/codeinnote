@@ -88,8 +88,8 @@ class SettingBar extends Component {
       type: '', //this.props.parameter.type,
       error: false,
     };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleSave = this.handleSave.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
+    // this.handleSave = this.handleSave.bind(this);
     this.handleType = this.handleType.bind(this);
   }
 
@@ -99,31 +99,32 @@ class SettingBar extends Component {
   //   this.setState({ type: this.props.parameter.type || 'Number' });
   // }
 
-  handleClick() {
-    // console.log('handleDoubleClick');
-    // console.log(this.state.editing); // always false
-    this.setState({ editing: true });
-    // console.log(this.state.editing); // always false
-    // e.preventDefault();
-  }
+  // handleClick() {
+  //   // console.log('handleDoubleClick');
+  //   // console.log(this.state.editing); // always false
+  //   this.setState({ editing: true });
+  //   // console.log(this.state.editing); // always false
+  //   // e.preventDefault();
+  // }
+  //
+  // handleSave(id, text) {
+  //   // console.log('handleSave');
+  //   if (text.length === 0) {
+  //     this.props.deleteParameter(id);
+  //   } else {
+  //     this.props.editParameter(id, text.replace(/\s/g, '_'));
+  //     // console.log(this.props.parameter);
+  //   }
+  //   this.setState({ editing: false });
+  // }
 
-  handleSave(id, text) {
-    // console.log('handleSave');
-    if (text.length === 0) {
-      this.props.deleteParameter(id);
-    } else {
-      this.props.editParameter(id, text.replace(/\s/g, '_'));
-      // console.log(this.props.parameter);
-    }
-    this.setState({ editing: false });
-  }
-
-  handleType = (id, name) => event => {
-    this.props.editParameterType(id, event.target.value);
+  handleType(event) {
+    // this.props.editParameterType(id, event.target.value);
     this.setState({
-      [name]: event.target.value,
+      type: event.target.value,
     });
-  };
+    this.props.setLanguage(this.props.id, event.target.value);
+  }
 
   render() {
     const { classes, parameter, deleteParameter }
@@ -135,7 +136,8 @@ class SettingBar extends Component {
           select
           label="Type"
           className={classes.selectField}
-          value={this.state.type}
+          value={this.props.language}
+          onChange={this.handleType}
           SelectProps={{
             MenuProps: {
               className: classes.menu,
@@ -157,12 +159,13 @@ class SettingBar extends Component {
 }
 
 
-
 SettingBar.propTypes = {
   classes: PropTypes.objectOf.isRequired,
-  parameter: PropTypes.objectOf.isRequired,
-  editParameter: PropTypes.func.isRequired,
-  deleteParameter: PropTypes.func.isRequired,
+  // parameter: PropTypes.objectOf.isRequired,
+  id: PropTypes.number.isRequired,
+  language: PropTypes.string.isRequired,
+  setLanguage: PropTypes.func.isRequired,
+  // deleteParameter: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SettingBar);

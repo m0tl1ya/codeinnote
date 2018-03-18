@@ -20,22 +20,26 @@ export const refresh = () => ({
   type: REFRESH,
 });
 
-export const editCode = text => ({
+export const editCode = (id, text) => ({
   type: EDIT_CODE,
+  id,
   text,
 });
 
-export const editTitle = text => ({
+export const editTitle = (id, text) => ({
   type: EDIT_TITLE,
+  id,
   text,
 });
 
-export const editDescription = text => ({
+export const editDescription = (id, text) => ({
   type: EDIT_DESCRIPTION,
+  id,
   text,
 });
 
-export const setLanguage = text => ({
+export const setLanguage = (id, text) => ({
   type: SET_LANGUAGE,
+  id,
   text,
 });

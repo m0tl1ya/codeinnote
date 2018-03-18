@@ -96,47 +96,48 @@ class CodeEditor extends Component {
       enableSnippets: false,
       showLineNumbers: true,
     };
-    this.setTheme = this.setTheme.bind(this);
-    this.setMode = this.setMode.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.setFontSize = this.setFontSize.bind(this);
     this.setBoolean = this.setBoolean.bind(this);
   }
 
-  onLoad() {
-    console.log('i\'ve loaded');
-  }
-  onChange(newValue) {
-    console.log('change', newValue);
+  // onLoad() {
+  //   console.log('i\'ve loaded');
+  // }
+
+  handleChange(newValue) {
     this.setState({
       value: newValue
     })
+    this.props.edit(this.props.id, newValue)
   }
-
-  onSelectionChange(newValue, event) {
-    console.log('select-change', newValue);
-    console.log('select-change-event', event);
-  }
-
-  onCursorChange(newValue, event) {
-    console.log('cursor-change', newValue);
-    console.log('cursor-change-event', event);
-  }
-
-  onValidate(annotations) {
-    console.log('onValidate', annotations);
-  }
-
-  setTheme(e) {
-    this.setState({
-      theme: e.target.value
-    })
-  }
-  setMode(e) {
-    this.setState({
-      mode: e.target.value
-    })
-  }
+  //
+  // onSelectionChange(newValue, event) {
+  //   console.log('select-change', newValue);
+  //   console.log('select-change-event', event);
+  // }
+  //
+  // onCursorChange(newValue, event) {
+  //   // this.setState({
+  //   //   value: newValue
+  //   // })
+  //   // this.props.edit(this.props.id, newValue)
+  // }
+  //
+  // onValidate(annotations) {
+  //   console.log('onValidate', annotations);
+  // }
+  //
+  // setTheme(e) {
+  //   this.setState({
+  //     theme: e.target.value
+  //   })
+  // }
+  // setMode(e) {
+  //   this.setState({
+  //     mode: e.target.value
+  //   })
+  // }
   setBoolean(name, value) {
     this.setState({
       [name]: value
@@ -157,7 +158,7 @@ class CodeEditor extends Component {
             theme={this.state.theme}
             name="blah2"
             onLoad={this.onLoad}
-            onChange={this.onChange}
+            onChange={this.handleChange}
             onSelectionChange={this.onSelectionChange}
             onCursorChange={this.onCursorChange}
             onValidate={this.onValidate}
@@ -180,7 +181,9 @@ class CodeEditor extends Component {
 
 CodeEditor.propTypes = {
   classes: PropTypes.objectOf.isRequired,
-  // edit: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  // editCode: PropTypes.objectOf.isRequired,
+  edit: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired,
   code: PropTypes.string.isRequired,
 };
