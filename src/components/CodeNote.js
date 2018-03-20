@@ -77,7 +77,6 @@ class CodeNote extends Component {
           <CodeEditor
             id={note.id}
             mode={note.language}
-            code={note.code}
             edit={actions.editCode}
           />
         </div>

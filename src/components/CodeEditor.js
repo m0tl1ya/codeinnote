@@ -84,7 +84,7 @@ class CodeEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.code || '',
+      value: '', // this.props.code || '',
       theme: 'monokai',
       mode: this.props.mode,
       enableBasicAutocompletion: false,
@@ -97,6 +97,7 @@ class CodeEditor extends Component {
       showLineNumbers: true,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
     this.setFontSize = this.setFontSize.bind(this);
     this.setBoolean = this.setBoolean.bind(this);
   }
@@ -104,13 +105,6 @@ class CodeEditor extends Component {
   // onLoad() {
   //   console.log('i\'ve loaded');
   // }
-
-  handleChange(newValue) {
-    this.setState({
-      value: newValue
-    })
-    this.props.edit(this.props.id, newValue)
-  }
   //
   // onSelectionChange(newValue, event) {
   //   console.log('select-change', newValue);
@@ -145,8 +139,20 @@ class CodeEditor extends Component {
   }
   setFontSize(e) {
     this.setState({
-      fontSize: parseInt(e.target.value,10)
+      fontSize: parseInt(e.target.value, 10),
     })
+  }
+
+  handleChange(newValue) {
+    this.setState({
+      value: newValue,
+    });
+    // this.props.edit(this.props.id, newValue)
+  }
+
+  handleBlur() {
+    // console.log(this.state.value);
+    this.props.edit(this.props.id, this.state.value);
   }
 
   render() {
@@ -159,10 +165,11 @@ class CodeEditor extends Component {
             name="blah2"
             onLoad={this.onLoad}
             onChange={this.handleChange}
+            onBlur={this.handleBlur}
             onSelectionChange={this.onSelectionChange}
             onCursorChange={this.onCursorChange}
             onValidate={this.onValidate}
-            value={this.props.code}
+            value={this.state.value}
             fontSize={this.state.fontSize}
             showPrintMargin={this.state.showPrintMargin}
             showGutter={this.state.showGutter}
@@ -185,7 +192,7 @@ CodeEditor.propTypes = {
   // editCode: PropTypes.objectOf.isRequired,
   edit: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired,
-  code: PropTypes.string.isRequired,
+  // code: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(CodeEditor);
