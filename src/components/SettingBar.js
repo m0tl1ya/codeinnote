@@ -42,7 +42,7 @@ const styles = theme => ({
     // bottom: '0.5em',
     marginLeft: '2em',
     marginRight: theme.spacing.unit,
-    width: '20em',
+    width: '5em',
     // paddingBottom: '0em',
   },
   selectField: {
@@ -86,13 +86,15 @@ class SettingBar extends Component {
     super(props);
     this.state = {
       editing: false,
-      name: '',
+      tagText: '',
       type: '', //this.props.parameter.type,
       error: false,
     };
     // this.handleClick = this.handleClick.bind(this);
     // this.handleSave = this.handleSave.bind(this);
     this.handleType = this.handleType.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     // this.handleDelete = this.handleDelete.bind(this);
   }
 
@@ -129,6 +131,23 @@ class SettingBar extends Component {
     this.props.setLanguage(this.props.id, event.target.value);
   }
 
+  handleSubmit(e) {
+    // console.log('handleSubmit');
+    const text = e.target.value.trim();
+    // console.log(text)
+    if (e.which === 13 & text.length > 0) { // Enter key
+      if (this.props.tags.filter(tag => tag == text).length == 0) {
+        this.props.onAddTag(this.props.id, text);
+        this.setState({ tagText: '' });
+      }
+    }
+  }
+
+  handleChange(e) {
+    // console.log('handleChange');
+    this.setState({ tagText: e.target.value });
+  }
+
   handleDelete = data => () => {
     this.props.onDeleteTag(this.props.id, data);
   };
@@ -139,6 +158,17 @@ class SettingBar extends Component {
      = this.props;
     return (
       <div>
+        <TextField
+          id="name"
+          label="Add tag"
+          value={this.state.tagText}
+          labelClassName={classes.textField}
+          InputClassName={classes.textField}
+          onChange={this.handleChange}
+          onKeyDown={this.handleSubmit}
+          autoFocus="false"
+          margin="normal"
+        />
         {tags.map(tag =>
           <Chip
             key={tag}
