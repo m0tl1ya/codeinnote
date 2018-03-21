@@ -6,6 +6,8 @@ import {
   EDIT_TITLE,
   EDIT_DESCRIPTION,
   SET_LANGUAGE,
+  ADD_TAG,
+  DELETE_TAG,
 } from '../actions/noteActions';
 
 const initialState = [
@@ -14,7 +16,7 @@ const initialState = [
     title: '',
     code: '',
     language: 'javascript',
-    isCounted: true,
+    tags: ['React'],
   },
 ];
 
@@ -28,7 +30,7 @@ function notes(state = initialState, action) {
           title: '',
           code: '',
           language: 'javascript',
-          isCounted: true,
+          tags: [],
         },
       ];
     case DELETE_NOTE:
@@ -66,6 +68,23 @@ function notes(state = initialState, action) {
           } :
           note);
 
+    case ADD_TAG:
+      return state.map(note =>
+          note.id === action.id ?
+          {
+            ...note,
+            tags: [...note.tags, action.tag],
+          } :
+          note);
+
+    case DELETE_TAG:
+      return state.map(note =>
+          note.id === action.id ?
+          {
+            ...note,
+            tags: note.tags.filter(n => n != action.tag),
+          } :
+          note);
     default:
       return state;
   }

@@ -19,8 +19,7 @@ import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 
 import Paper from 'material-ui/Paper';
-
-
+import Chip from 'material-ui/Chip';
 
 
 const styles = theme => ({
@@ -58,6 +57,9 @@ const styles = theme => ({
   deleteButton: {
     // top: '0.5em',
   },
+  chip: {
+    margin: theme.spacing.unit / 2,
+  },
 });
 
 const typeOfParameters = [
@@ -91,6 +93,7 @@ class SettingBar extends Component {
     // this.handleClick = this.handleClick.bind(this);
     // this.handleSave = this.handleSave.bind(this);
     this.handleType = this.handleType.bind(this);
+    // this.handleDelete = this.handleDelete.bind(this);
   }
 
   // componentWillMount() {
@@ -126,11 +129,23 @@ class SettingBar extends Component {
     this.props.setLanguage(this.props.id, event.target.value);
   }
 
+  handleDelete = data => () => {
+    this.props.onDeleteTag(this.props.id, data);
+  };
+
+
   render() {
-    const { classes, parameter, deleteParameter }
+    const { classes, tags }
      = this.props;
     return (
       <div>
+        {tags.map(tag =>
+          <Chip
+            key={tag}
+            label={tag}
+            onDelete={this.handleDelete(tag)}
+            className={classes.chip}
+          />)}
         <TextField
           id="select-type"
           select
@@ -165,6 +180,9 @@ SettingBar.propTypes = {
   id: PropTypes.number.isRequired,
   language: PropTypes.string.isRequired,
   setLanguage: PropTypes.func.isRequired,
+  onAddTag: PropTypes.func.isRequired,
+  onDeleteTag: PropTypes.func.isRequired,
+  tags: PropTypes.arrayOf.isRequired,
   // deleteParameter: PropTypes.func.isRequired,
 };
 

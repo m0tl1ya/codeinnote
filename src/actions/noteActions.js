@@ -6,6 +6,8 @@ export const EDIT_CODE = 'EDIT_CODE';
 export const EDIT_TITLE = 'EDIT_TITLE';
 export const EDIT_DESCRIPTION = 'EDIT_DESCRIPTION';
 export const SET_LANGUAGE = 'SET_LANGUAGE';
+export const ADD_TAG = 'ADD_TAG';
+export const DELETE_TAG = 'DELETE_TAG';
 
 export const addNote = () => ({
   type: ADD_NOTE,
@@ -42,4 +44,16 @@ export const setLanguage = (id, text) => ({
   type: SET_LANGUAGE,
   id,
   text,
+});
+
+export const addTag = (id, tag) => ({
+  type: ADD_TAG,
+  id,
+  tag,
+});
+
+export const deleteTag = (id, tag) => ({
+  type: DELETE_TAG,
+  id,
+  tag,
 });

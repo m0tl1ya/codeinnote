@@ -72,7 +72,10 @@ class CodeNote extends Component {
           <SettingBar
             id={note.id}
             language={note.language}
+            tags={note.tags}
             setLanguage={actions.setLanguage}
+            onAddTag={actions.addTag}
+            onDeleteTag={actions.deleteTag}
           />
           <CodeEditor
             id={note.id}
