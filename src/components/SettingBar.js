@@ -60,6 +60,10 @@ const styles = theme => ({
   chip: {
     margin: theme.spacing.unit / 2,
   },
+  tags: {
+    flexWrap: 'wrap',
+    margin: '1em',
+  },
 });
 
 const typeOfParameters = [
@@ -169,13 +173,6 @@ class SettingBar extends Component {
           autoFocus="false"
           margin="normal"
         />
-        {tags.map(tag =>
-          <Chip
-            key={tag}
-            label={tag}
-            onDelete={this.handleDelete(tag)}
-            className={classes.chip}
-          />)}
         <TextField
           id="select-type"
           select
@@ -196,6 +193,16 @@ class SettingBar extends Component {
             </MenuItem>
           ))}
         </TextField>
+        <div className={classes.tags}>
+          {tags.map(tag =>
+            <Chip
+              key={tag}
+              label={tag}
+              onDelete={this.handleDelete(tag)}
+              className={classes.chip}
+            />)}
+        </div>
+
 
 
       </div>
