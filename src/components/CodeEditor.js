@@ -11,7 +11,7 @@ import brace from 'brace';
 import AceEditor from 'react-ace';
 
 import 'brace/mode/python';
-import 'brace/theme/github';
+import 'brace/theme/monokai';
 
 /*eslint-disable no-alert, no-console */
 import 'brace/ext/language_tools';
@@ -159,28 +159,29 @@ class CodeEditor extends Component {
     const { classes } = this.props;
     return (
       <AceEditor
-            className={classes.root}
-            mode={this.props.mode}
-            theme={this.state.theme}
-            name="blah2"
-            onLoad={this.onLoad}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            onSelectionChange={this.onSelectionChange}
-            onCursorChange={this.onCursorChange}
-            onValidate={this.onValidate}
-            value={this.state.value}
-            fontSize={this.state.fontSize}
-            showPrintMargin={this.state.showPrintMargin}
-            showGutter={this.state.showGutter}
-            highlightActiveLine={this.state.highlightActiveLine}
-            setOptions={{
-              enableBasicAutocompletion: this.state.enableBasicAutocompletion,
-              enableLiveAutocompletion: this.state.enableLiveAutocompletion,
-              enableSnippets: this.state.enableSnippets,
-              showLineNumbers: this.state.showLineNumbers,
-              tabSize: 2,
-            }}/>
+        className={classes.root}
+        mode={this.props.mode}
+        theme={this.state.theme}
+        name="blah2"
+        onLoad={this.onLoad}
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
+        onSelectionChange={this.onSelectionChange}
+        onCursorChange={this.onCursorChange}
+        onValidate={this.onValidate}
+        value={this.state.value}
+        fontSize={this.state.fontSize}
+        showPrintMargin={this.state.showPrintMargin}
+        showGutter={this.state.showGutter}
+        highlightActiveLine={this.state.highlightActiveLine}
+        setOptions={{
+          enableBasicAutocompletion: this.state.enableBasicAutocompletion,
+          enableLiveAutocompletion: this.state.enableLiveAutocompletion,
+          enableSnippets: this.state.enableSnippets,
+          showLineNumbers: this.state.showLineNumbers,
+          tabSize: 2,
+        }}
+      />
 
     );
   }

@@ -40,7 +40,7 @@ const styles = theme => ({
   textField: {
     // top: '0.5em',
     // bottom: '0.5em',
-    marginLeft: '2em',
+    // marginLeft: '0.2em',
     marginRight: theme.spacing.unit,
     width: '5em',
     // paddingBottom: '0em',
@@ -49,7 +49,7 @@ const styles = theme => ({
     // bottom: '0.5em',
     marginLeft: '15em',
     marginRight: theme.spacing.unit,
-    width: '10em',
+    width: '11em',
   },
   menu: {
     width: 200,
