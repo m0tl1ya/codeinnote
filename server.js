@@ -4,4 +4,17 @@ const port = process.env.PORT || 5000;
 app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
+
+app.post([url], (request, response) => {
+  //
+})
+
+app.put([url], (request, response) => {
+  //
+})
+
+app.delete([url], (request, response) => {
+  //
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
