@@ -18,19 +18,12 @@ import { Link } from 'react-router-dom';
 // import db from '../lib/db';
 
 const styles = theme => ({
-  createModuleHeader: {
-    alignItems: 'center',
-    display: 'inlineFlex',
-  },
   textField: {
     // marginLeft: theme.spacing.unit,
     // marginRight: theme.spacing.unit,
     background: blueGrey[50],// #afbbc9
     width: '80%',
   },
-  button: {
-    margin: '1em',
-  }
 });
 
 
@@ -106,29 +99,16 @@ class TitleInput extends Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <div className="createModuleHeader">
-          <TextField
-            id="module-name"
-            className={classes.textField}
-            label="Title"
-            value={this.state.name}
-            onChange={this.handleChange('name')}
-            onBlur={this.handleBlur('name')}
-            fullWidth
-            margin="normal"
-          />
-          <Button
-            raised
-            color="primary"
-            className={classes.button}
-            onClick={this.handleSave}
-          >
-            Save
-          </Button>
-        </div>
-
-      </div>
+      <TextField
+        id="module-name"
+        className={classes.textField}
+        label="Title"
+        value={this.state.name}
+        onChange={this.handleChange('name')}
+        onBlur={this.handleBlur('name')}
+        fullWidth
+        margin="normal"
+      />
     );
   }
 }
