@@ -65,26 +65,26 @@ class CodeNote extends Component {
     // this.handleText = this.handleText.bind(this);
     // this.handleState = this.handleState.bind(this);
     // this.handleTitleText = this.handleTitleText.bind(this);
-    this.handleSave = this.handleSave.bind(this);
+    // this.handleSave = this.handleSave.bind(this);
   }
 
-  handleSave() {
-    axios.post('/api/notes', {
-      this.props.note.title,
-      this.props.note.code,
-      this.props.note.language,
-      this.props.note.tags
-    })
-    .then(response => {
-      store.dispatch(initializeForm())
-      const characterArray = response.data
-      store.dispatch(receiveDataSuccess(characterArray))
-    })
-    .catch(err => {
-      console.error(new Error(err))
-      store.dispatch(receiveDataFailed())
-    })
-  }
+  // handleSave() {
+  //   axios.post('/api/notes', {
+  //     title,
+  //     code,
+  //     language,
+  //     tags
+  //   })
+  //   .then(response => {
+  //     store.dispatch(initializeForm())
+  //     const characterArray = response.data
+  //     store.dispatch(receiveDataSuccess(characterArray))
+  //   })
+  //   .catch(err => {
+  //     console.error(new Error(err))
+  //     store.dispatch(receiveDataFailed())
+  //   })
+  // }
 
 
   render() {
@@ -102,7 +102,7 @@ class CodeNote extends Component {
               raised
               color="primary"
               className={classes.button}
-              onClick={this.handleSave}
+              onClick={this.props.saveNote}
             >
               Save
             </Button>
@@ -131,7 +131,7 @@ CodeNote.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   note: PropTypes.objectOf.isRequired,
   actions: PropTypes.objectOf.isRequired,
-  mode: PropTypes.objectOf.isRequired,
+  saveNote: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(CodeNote);

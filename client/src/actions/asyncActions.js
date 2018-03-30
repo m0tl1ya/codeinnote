@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const SAVE_NOTE = 'SAVE_NOTE';
+export const POST_NOTE = 'POST_NOTE';
 export const GET_NOTES_ERROR = 'GET_NOTES_ERROR';
 export const LOAD_NOTES = 'LOAD_NOTES';
 export const FETCH_NOTES_SUCCESS = 'FETCH_NOTES_SUCCESS';
@@ -9,30 +9,25 @@ export const RECEIVE_NOTE_SUCCESS = 'RECEIVE_NOTE_SUCCESS';
 export const RECEIVE_NOTE_FAILED = 'RECEIVE_NOTE_FAILED';
 
 
-export const getNotesError = status => ({
-  type: 'GET_NOTES_ERROR',
+export const receiveNoteFailed = status => ({
+  type: 'RECEIVE_NOTE_FAILED',
   hasError: status,
 });
 
-export const loadNotes = status => ({
-  type: 'LOAD_NOTES',
+export const postNote = status => ({
+  type: 'POST_NOTE',
   isLoading: status,
 });
 
-export const fetchNotesSuccess = modules => ({
-  type: 'FETCH_NOTES_SUCCESS',
-  modules,
-});
-
-export const saveNote = id => ({
-  type: SAVE_NOTE,
-  id,
+export const receiveNoteSuccess = note => ({
+  type: 'FETCH_MODULES_SUCCESS',
+  note,
 });
 
 
-export function postNote(note) {
+export function saveNote(note) {
   return (dispatch) => {
-    dispatch(saveNote(true));
+    dispatch(postNote(true));
     axios.post('/api/notes', {
       note,
     }).then(response => {
@@ -40,9 +35,10 @@ export function postNote(note) {
       dispatch(receiveNoteSuccess(noteArray));
     }).catch(err => {
       console.error(new Error(err))
-      store.dispatch(receiveNoteFailed())
-    })
+      dispatch(receiveNoteFailed())
+    });
 
+  }
 }
 
 // export function fetchNotes() {

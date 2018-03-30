@@ -41,6 +41,7 @@ class AddingNoteMain extends Component {
           <CodeNote
             note={note}
             actions={actions}
+            saveNote={this.props.saveNote}
           />)}
         <Button
           variant="fab"
@@ -67,7 +68,7 @@ AddingNoteMain.propTypes = {
   classes: PropTypes.objectOf.isRequired,
   notes: PropTypes.arrayOf.isRequired,
   actions: PropTypes.objectOf.isRequired,
-  // addNote: PropTypes.func.isRequired,
+  saveNote: PropTypes.func.isRequired,
   // refresh: PropTypes.func.isRequired,
 };
 
