@@ -1,17 +1,17 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import path from 'path';
 import mongoose from 'mongoose';
 import Note from './modelOfNote';
 
 
-const app = express()
-const port = process.env.PORT || 5000
-const dbUrl = process.env.MONGODB_URI
+const app = express();
+const port = process.env.PORT || 3001;
+// const dbUrl = 'mongodb://localhost/test'
+const dbUrl = 'mongodb://127.0.0.1:27017';
 
 // app.use(express.static(path.join(__dirname, 'client/build')))
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 mongoose.connect(dbUrl, dbErr => {
   if (dbErr) throw new Error(dbErr)
@@ -21,8 +21,10 @@ mongoose.connect(dbUrl, dbErr => {
     const { title, code, language, tags } = request.body
 
     new Note({
-      name,
-      age,
+      title,
+      code,
+      language,
+      tags,
     }).save(err => {
       if (err) response.status(500)
       else {
