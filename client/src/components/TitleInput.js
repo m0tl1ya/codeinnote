@@ -69,7 +69,7 @@ class TitleInput extends Component {
     // this.setState({ parameters: this.props.parameters });
 
     // console.log(this.props.parameters.length);
-    if (this.props.title.length > 0 && this.props.parameters.length > 0) {
+    if (this.props.title.length > 0) {
       // db.modules.put({
       //   name: this.state.name,
       //   description: this.state.description,
@@ -77,10 +77,10 @@ class TitleInput extends Component {
       //   updateAt: new Date()
       // });
 
-      this.setState({ name: '' });
-      this.setState({ description: '' });
-      this.props.discardHeaderInfo();
-      this.props.discardParameters();
+      // this.setState({ name: '' });
+      // this.setState({ description: '' });
+      // this.props.discardHeaderInfo();
+      // this.props.discardParameters();
 
     } else {
       console.log('not save');
